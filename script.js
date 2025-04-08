@@ -34,7 +34,7 @@ function updatePlayerList() {
     const listDiv = document.getElementById("playerList");
 
     if (playerNames.length === 0) {
-        listDiv.innerHTML = "No players were added yet.";
+        listDiv.innerHTML = "<h3>No players added yet.</h3>";
         document.getElementById("startButton") = true;
         return;
     }
@@ -42,10 +42,10 @@ function updatePlayerList() {
     listDiv.innerHTML = "";
     playerNames.forEach((name, index) => {
         const playerItem = document.createElement("div");
-        playerItem.className = "player-item";
+        playerItem.className = "playerItem";
         playerItem.innerHTML = `
-            ${index + 1}. ${name}
-            <button class="remove-btn" onclick="removePlayer(${index})">Remove</button>
+            Player ${index + 1} - ${name}
+            <button class="removeBtn" onclick="removePlayer(${index})">Remove</button>
         `;
         listDiv.appendChild(playerItem);
     });
@@ -90,10 +90,11 @@ function play() {
 
     while (true) {
         appendLog("\nRound " + rounds);
+        appendLog("________________\n")
         round(players, 10);
         const rank = rankings(players);
         for (let i = 0; i < rank.length; i++) {
-            appendLog(" " + (i + 1) + ". " + rank[i].name + " - " + rank[i].score + " points");
+            appendLog("Player " + (i + 1) + " - " + rank[i].name + " = " + rank[i].score + " points");
         }
 
         const tiedPlayers = checkTie(rank);

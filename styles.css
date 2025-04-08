@@ -14,6 +14,9 @@ body {
 .section1 {
     height: 100vh;
     width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .input {
@@ -28,18 +31,103 @@ body {
 
 h2 {
     font-size: 100%;
+    background-color: #1c1c1c;
+    padding: 14px;
+    color: white;
+    border: 1px solid #1c1c1c;
 }
 
 input {
     width: 200px;
-    height: 20px;
+    height: 50px;
     font-size: 100%;
+    padding: 10px;
+    outline: none;
+    transition: 0.5s;
+}
+
+input:hover,
+input:focus {
+    width: 250px;
 }
 
 .addBtn {
-    height: 20px;
+    height: 50px;
+    width: 150px;
     font-size: 100%;
-    padding: 10px;
+    background-color: transparent;
+    border: 1px solid black;
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.addBtn::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #1c1c1c;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 0.5s;
+}
+
+.addBtn:hover::after {
+    transform: scaleX(1);
+}
+
+.addBtn:hover {
+    color: white;
+    font-weight: bold;
+}
+
+#playerList {
+    width: 40%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    font-size: 120%;
+    border: 1px solid black;
+    overflow-x: auto;
+}
+
+.playerItem {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    padding-left: 25px;
+    justify-content: space-between;
+}
+
+h3 {
+    font-weight: lighter;
+    font-size: 90%;
+    margin: 10px;
+    opacity: 50%;
+}
+
+.removeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 70px;
+    font-size: 75%;
+    width: 80px;
+    transition: 0.3s;
+}
+
+.removeBtn:hover {
+    background-color: rgb(255, 100, 100);
+    color: white;
 }
 
 .log {

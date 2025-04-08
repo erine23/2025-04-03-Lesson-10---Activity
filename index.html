@@ -8,14 +8,16 @@
 <body>
     <div class="section1">
         <div class="input">
-            <h2>NAME:</h2>
+            <h2>NAME</h2>
             <input id="playerInput" type="text" placeholder="Enter player name" />
             <button class='addBtn'onclick="addPlayer()">Add Player</button>
         </div>
-        <div id="playerList">No players added yet.</div>
+        <div id="playerList"><h3>No players added yet.</h3></div>
     </div>
     <div class="section2">
-        <button id="startButton" onclick="play()" >Start Game</button>
+        <div class="input">
+            <button class="addBtn" id="startButton" onclick="play()" >Start Game</button>
+        </div>
         <div class="log" id="log"></div>
         <script src="script.js"></script>
     </div>
