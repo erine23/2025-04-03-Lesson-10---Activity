@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="section1">
+        <div class="input">
+            <h2>NAME:</h2>
+            <input id="playerInput" type="text" placeholder="Enter player name" />
+            <button class='addBtn'onclick="addPlayer()">Add Player</button>
+        </div>
+        <div id="playerList">No players added yet.</div>
+    </div>
+    <div class="section2">
+        <button id="startButton" onclick="play()" >Start Game</button>
+        <div class="log" id="log"></div>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>
