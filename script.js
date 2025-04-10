@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("startButton").disabled = true;
+});
+
 class Player {
     constructor(name) {
         this.name = name;
@@ -32,10 +36,11 @@ function removePlayer(index) {
 
 function updatePlayerList() {
     const listDiv = document.getElementById("playerList");
+    const startButton = document.getElementById("startButton");
 
     if (playerNames.length === 0) {
-        listDiv.innerHTML = "<h3>No players added yet.</h3>";
-        document.getElementById("startButton") = true;
+        listDiv.innerHTML = "<h3>No players have been added yet.</h3>";
+        startButton.disabled = true;
         return;
     }
 
@@ -49,6 +54,8 @@ function updatePlayerList() {
         `;
         listDiv.appendChild(playerItem);
     });
+
+    startButton.disabled = playerNames.length < 2;
 }
 
 function createPlayers(nameArray) {
@@ -75,7 +82,11 @@ function checkTie(players) {
 
 function appendLog(message) {
     const log = document.getElementById("log");
-    log.innerHTML += message + "\n";
+    const messageElement = document.createElement("div");
+    messageElement.style.paddingLeft = "30px";
+    messageElement.style.paddingBottom = "30px";
+    messageElement.textContent = message;
+    log.appendChild(messageElement);
     log.scrollTop = log.scrollHeight;
 }
 
@@ -90,16 +101,20 @@ function play() {
 
     while (true) {
         appendLog("\nRound " + rounds);
-        appendLog("________________\n")
+        appendLog("━━━━⊱⋆⊰━━━━\n")
         round(players, 10);
         const rank = rankings(players);
+        const highestScore = rank[0].score;
+        
         for (let i = 0; i < rank.length; i++) {
-            appendLog("Player " + (i + 1) + " - " + rank[i].name + " = " + rank[i].score + " points");
+            const isHighest = rank[i].score === highestScore;
+            const star = isHighest ? "☆ " : "";
+            appendLog(star + "Player " + (i + 1) + " - " + rank[i].name + " = " + rank[i].score + " points");
         }
 
         const tiedPlayers = checkTie(rank);
         if (tiedPlayers.length === 1) {
-            appendLog("\nCHAMPION: " + tiedPlayers[0].name + " with " + tiedPlayers[0].score + " points!");
+            appendLog("\n☆ " + tiedPlayers[0].name + " with " + tiedPlayers[0].score + " points!");
             break;
         } else {
             appendLog("\nTiebreaker needed between: " + tiedPlayers.map(p => p.name).join(", "));
@@ -109,3 +124,4 @@ function play() {
         }
     }
 }
+
